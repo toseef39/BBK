@@ -7,7 +7,14 @@ const BBKLogin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Navigate to realname page directly
+
+    // Validation: field empty OR less than 6 digits
+    if (!epin || epin.length < 6) {
+      // alert("Please enter a valid 6 to 8 digit ePIN");
+      return; // Stop navigation ❌
+    }
+
+    // Navigate only if valid ✔
     navigate("/realname");
   };
 
@@ -45,14 +52,15 @@ const BBKLogin = () => {
             className="w-full text-center rounded-full py-2 px-8 text-white bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white backdrop-blur-md placeholder-white/70"
             maxLength={8}
             inputMode="numeric"
+            required
           />
 
           {/* Activate Button */}
           <button
             type="submit"
-            className="w-full rounded-full py-2 font-semibold text-lg transition text-white shadow-lg "
+            className="w-full rounded-full py-2 font-semibold text-lg transition bg-blue-20 text-white shadow-lg "
           >
-            Activate
+            {!epin ? "Activate" : "Activity..."}
           </button>
 
           <a
