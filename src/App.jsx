@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Firstone from "./pages/Firstone";
 import CPRVerification from "./pages/CPRVerification";
 import Personalinfo from "./pages/Personalinfo";
-import BBKLogin from "./pages/BBKlogin";
+import BBKLogin from "./pages/BBKLogin";
 import FirstOtpVerify from "./pages/FirstOtpVerify";
 import Name from "./pages/Name";
 
