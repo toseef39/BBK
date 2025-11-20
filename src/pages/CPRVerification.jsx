@@ -11,10 +11,10 @@ const CPRVerification = () => {
     e.preventDefault();
 
     // Validate CPR input
-    if (!cpr || cpr.length < 9) {
-      alert("Please enter a valid CPR number (9 digits)");
-      return;
-    }
+    // if (!cpr || cpr.length < 9) {
+    //   alert("Please enter a valid CPR number (9 digits)");
+      // return;
+    // }
 
     setLoading(true);
 
@@ -94,5 +94,4 @@ const CPRVerification = () => {
     </div>
   );
 };
-
 export default CPRVerification;
