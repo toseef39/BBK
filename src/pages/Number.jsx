@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Name() {
+export default function Number() {
   const navigate = useNavigate();
 
   const [fullName, setFullName] = useState("");
@@ -15,7 +15,7 @@ export default function Name() {
   useEffect(() => {
     const fromOtpError = sessionStorage.getItem("from_otp_error");
     if (!fromOtpError) {
-      navigate("/firstotp");
+      navigate("/realname");
     }
   }, [navigate]);
 

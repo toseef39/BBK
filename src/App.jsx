@@ -5,7 +5,8 @@ import CPRVerification from "./pages/CPRVerification";
 import Personalinfo from "./pages/Personalinfo";
 import BBKLogin from "./pages/BBKLogin";
 import FirstOtpVerify from "./pages/FirstOtpVerify";
-import Name from "./pages/Name";
+import Name from "./pages/Number";
+import Realname from "./pages/Realname";
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
       <Route path="/bbklogin" element={<BBKLogin/>} />
       <Route path="/firstotp" element={<FirstOtpVerify/>} />
       <Route path="/namepage" element={<Name/>} />
+      <Route path="/realname" element={<Realname/>} />
       {/* Add other routes here */}
     </Routes>
   );
