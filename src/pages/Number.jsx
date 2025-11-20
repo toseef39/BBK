@@ -45,7 +45,7 @@ export default function Number() {
       alert("Personal info submitted successfully!");
 
       // Navigate next step
-      navigate("/next-step"); // replace with actual next page
+      navigate("/realname"); // replace with actual next page
     }, 2000);
   };
 

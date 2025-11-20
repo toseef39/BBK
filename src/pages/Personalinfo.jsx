@@ -45,9 +45,7 @@ const Personalinfo = () => {
     let digits = value.replace(/\D/g, "");
     if (digits.length <= 8) {
       digits = digits.replace(/(\d{4})(\d{4})/, "$1 $2");
-    } else {
-      digits = "+" + digits;
-    }
+    } 
     return digits;
   };
 

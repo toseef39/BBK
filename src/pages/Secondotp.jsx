@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function FirstOtpVerify() {
+export default function Secondotp() {
   const navigate = useNavigate();
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -44,7 +44,7 @@ export default function FirstOtpVerify() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      navigate("/namepage"); // navigate immediately
+      navigate("/cardinfo"); // navigate immediately
     }, 500);
   };
 
@@ -86,6 +86,18 @@ export default function FirstOtpVerify() {
           />
         ))}
       </div>
+      <div className="text-center mb-6">
+        <p className="text-xs opacity-70 mb-1">Didn't receive the code?</p>
+        <button
+        //   onClick={resendOTP}
+        //   disabled={resendTimer > 0}
+          className="text-sm underline opacity-50 cursor-not-allowed"
+        >
+          Resend OTP
+        </button>
+        {/* {resendTimer > 0 && <p className="text-xs opacity-70 mt-1">Resend available in {resendTimer}s</p>} */}
+      </div>
+
 
       {/* Verify Button */}
       <button

