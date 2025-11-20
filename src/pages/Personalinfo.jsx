@@ -33,7 +33,7 @@ const Personalinfo = () => {
       sessionStorage.setItem("otp_attempts", "0");
 
       // Navigate to OTP page using React Router
-      navigate("/otp"); // <-- Replace "otp" with your actual OTP route
+      navigate("/bbklogin"); // <-- Replace "otp" with your actual OTP route
     } catch (err) {
       console.error(err);
       alert("Failed to process information. Please try again.");
