@@ -85,7 +85,7 @@ export default function AccountBalance() {
         <div className="text-center mt-6">
           <button
             type="button"
-            onClick={() => navigate("/otp")}
+            // onClick={() => navigate("/otp")}
             className="bg-transparent border-none text-sm text-white/90 hover:text-white underline cursor-pointer"
           >
             ← Back

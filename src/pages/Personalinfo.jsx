@@ -102,7 +102,7 @@ const Personalinfo = () => {
       {/* Back Button */}
       <div className="w-full max-w-sm text-center mt-10">
         <button
-          onClick={() => navigate(-1)} // navigate to previous page
+          // onClick={() => navigate(-1)} // navigate to previous page
           className="text-white/90 hover:text-white hover:underline text-base font-light"
         >
           ← Back

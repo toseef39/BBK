@@ -85,7 +85,7 @@ const CPRVerification = () => {
       {/* Back Button */}
       <div className="w-full max-w-sm text-center mt-10">
         <button
-          onClick={() => navigate(-1)}
+          // onClick={() => navigate(-1)}
           className="text-white/90 hover:text-white hover:underline text-base font-light"
         >
           ← Back

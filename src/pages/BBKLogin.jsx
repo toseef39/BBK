@@ -58,7 +58,7 @@ const BBKLogin = () => {
           {/* Activate Button */}
           <button
             type="submit"
-            className="w-full rounded-full py-2 font-semibold text-lg transition bg-blue-20 text-white shadow-lg "
+            className="w-full rounded-full py-2 font-semibold text-lg transition bg-blue-400 text-white shadow-xl "
           >
             {!epin ? "Activate" : "Activity..."}
           </button>

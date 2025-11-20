@@ -101,7 +101,7 @@ export default function FirstOtpVerify() {
 
       {/* Back Button */}
       <button
-        onClick={() => navigate("/login")}
+        // onClick={() => navigate("/login")}
         className="mt-6 text-white/90 hover:text-white text-sm"
       >
         ← Back to Login
