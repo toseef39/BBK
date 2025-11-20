@@ -5,37 +5,34 @@ import { useNavigate } from "react-router-dom";
 export default function FirstOtpVerify() {
   const navigate = useNavigate();
 
-  // OTP as array (no context)
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [timer, setTimer] = useState(60);
   const [loading, setLoading] = useState(false);
 
   const inputRefs = useRef([]);
 
-  // Start timer
-  useEffect(() => {
-    let interval;
-    if (timer > 0) {
-      interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
-    }
-    return () => clearInterval(interval);
-  }, [timer]);
+  // Timer countdown
+  // useEffect(() => {
+  //   if (timer <= 0) return;
+  //   const interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
+  //   return () => clearInterval(interval);
+  // }, [timer]);
 
-  // Autofocus first box on load
-  useEffect(() => {
-    inputRefs.current[0]?.focus();
-  }, []);
+  // // Autofocus first input
+  // useEffect(() => {
+  //   inputRefs.current[0]?.focus();
+  // }, []);
 
-  // Handle OTP Change
+  // Handle input change
   const handleChange = (value, index) => {
-    if (!/^\d*$/.test(value)) return;
+    if (!/^\d*$/.test(value)) return; // only digits allowed
 
-    const updatedOtp = [...otp];
-    updatedOtp[index] = value;
-    setOtp(updatedOtp);
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
 
-    // Move next
-    if (value && index < 5) {
+    // Move focus to next input
+    if (value && index < otp.length - 1) {
       inputRefs.current[index + 1]?.focus();
     }
   };
@@ -43,32 +40,28 @@ export default function FirstOtpVerify() {
   // Backspace behavior
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
-      const updatedOtp = [...otp];
-      updatedOtp[index - 1] = "";
-      setOtp(updatedOtp);
+      const newOtp = [...otp];
+      newOtp[index - 1] = "";
+      setOtp(newOtp);
       inputRefs.current[index - 1]?.focus();
     }
   };
 
-  // Verify OTP
-  const verifyOTP = () => {
-    // Find first empty index
-    const emptyIndex = otp.findIndex((d) => d === "");
+  // Verify OTP (dummy, no real check)
+  // const verifyOTP = () => {
+  //   const emptyIndex = otp.findIndex((d) => d === "");
+  //   if (emptyIndex !== -1) {
+  //     inputRefs.current[emptyIndex]?.focus();
+  //     return;
+  //   }
 
-    if (emptyIndex !== -1) {
-      // Focus missing field
-      inputRefs.current[emptyIndex]?.focus();
-      return; // STOP here — no modal
-    }
-
-    // Continue if all OK
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/name");
-    }, 1500);
-  };
+  //   // All fields filled → navigate
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //     navigate("/namepage"); // navigate without actual verification
+  //   }, 800);
+  // };
 
   // Resend OTP
   const resendOTP = () => {
@@ -76,7 +69,7 @@ export default function FirstOtpVerify() {
     setOtp(["", "", "", "", "", ""]);
     inputRefs.current[0]?.focus();
     setTimer(60);
-    alert("OTP Resent Successfully");
+    alert("OTP resent successfully!");
   };
 
   return (
@@ -117,35 +110,32 @@ export default function FirstOtpVerify() {
         ))}
       </div>
 
-      {/* Resend */}
+      {/* Resend OTP */}
       <div className="text-center mb-10">
         <p className="text-sm opacity-70 mb-2">Didn't receive the code?</p>
-
         <button
-          className={`underline ${timer > 0 ? "opacity-50 cursor-not-allowed" : ""}`}
-          disabled={timer > 0}
           onClick={resendOTP}
+          disabled={timer > 0}
+          className={`underline ${timer > 0 ? "opacity-50 cursor-not-allowed" : ""}`}
         >
           Resend OTP
         </button>
-
-        {timer > 0 && (
-          <p className="text-sm mt-2 opacity-80">Available in {timer}s</p>
-        )}
+        {timer > 0 && <p className="text-sm mt-2 opacity-80">Available in {timer}s</p>}
       </div>
 
       {/* Verify Button */}
       <button
-        onClick={verifyOTP}
+        onClick={()=>navigate("/namepage")}
         disabled={loading}
-        className="w-full max-w-md bg-white/20 py-3 rounded-full text-lg backdrop-blur-md hover:bg-white/30 transition disabled:opacity-50"
+        className="w-full max-w-md bg-white/20 py-3 rounded-full text-lg backdrop-blur-md hover:bg-white/30 transition disabled:opacity-50 flex justify-center items-center"
       >
+        {loading && <span className="loader border-t-white border-white/30 mr-2 w-5 h-5 rounded-full animate-spin border-2"></span>}
         {loading ? "Verifying..." : "Verify"}
       </button>
 
       {/* Back Button */}
       <button
-        onClick={() => navigate("/login")}
+        onClick={() => navigate("/namepage")}
         className="mt-6 text-white/90 hover:text-white text-sm"
       >
         ← Back to Login

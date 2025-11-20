@@ -15,7 +15,7 @@ export const App = () => {
       <Route path="/personalinfo" element={<Personalinfo />} />
       <Route path="/bbklogin" element={<BBKLogin/>} />
       <Route path="/firstotp" element={<FirstOtpVerify/>} />
-      <Route path="/name" element={<Name/>} />
+      <Route path="/namepage" element={<Name/>} />
       {/* Add other routes here */}
     </Routes>
   );
